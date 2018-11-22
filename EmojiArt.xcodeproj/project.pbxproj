@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B2FAD1A21A6F913004FC2F7 /* EmojiArtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2FAD1921A6F913004FC2F7 /* EmojiArtViewController.swift */; };
 		7B67444121A6F546000EF630 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B67444021A6F546000EF630 /* AppDelegate.swift */; };
-		7B67444321A6F546000EF630 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B67444221A6F546000EF630 /* ViewController.swift */; };
 		7B67444621A6F546000EF630 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B67444421A6F546000EF630 /* Main.storyboard */; };
 		7B67444821A6F548000EF630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B67444721A6F548000EF630 /* Assets.xcassets */; };
 		7B67444B21A6F548000EF630 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B67444921A6F548000EF630 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B2FAD1921A6F913004FC2F7 /* EmojiArtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArtViewController.swift; sourceTree = "<group>"; };
 		7B67443D21A6F546000EF630 /* EmojiArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmojiArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B67444021A6F546000EF630 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7B67444221A6F546000EF630 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7B67444521A6F546000EF630 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7B67444721A6F548000EF630 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7B67444A21A6F548000EF630 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -35,6 +35,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B2FAD1821A6F8C3004FC2F7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7B67444021A6F546000EF630 /* AppDelegate.swift */,
+				7B67444721A6F548000EF630 /* Assets.xcassets */,
+				7B67444921A6F548000EF630 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		7B67443421A6F546000EF630 = {
 			isa = PBXGroup;
 			children = (
@@ -54,11 +64,9 @@
 		7B67443F21A6F546000EF630 /* EmojiArt */ = {
 			isa = PBXGroup;
 			children = (
-				7B67444021A6F546000EF630 /* AppDelegate.swift */,
-				7B67444221A6F546000EF630 /* ViewController.swift */,
+				7B2FAD1921A6F913004FC2F7 /* EmojiArtViewController.swift */,
 				7B67444421A6F546000EF630 /* Main.storyboard */,
-				7B67444721A6F548000EF630 /* Assets.xcassets */,
-				7B67444921A6F548000EF630 /* LaunchScreen.storyboard */,
+				7B2FAD1821A6F8C3004FC2F7 /* Supporting Files */,
 				7B67444C21A6F548000EF630 /* Info.plist */,
 			);
 			path = EmojiArt;
@@ -135,8 +143,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B67444321A6F546000EF630 /* ViewController.swift in Sources */,
 				7B67444121A6F546000EF630 /* AppDelegate.swift in Sources */,
+				7B2FAD1A21A6F913004FC2F7 /* EmojiArtViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
