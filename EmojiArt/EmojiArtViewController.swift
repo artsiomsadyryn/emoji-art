@@ -17,6 +17,8 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate
     
     var imageFetcher: ImageFetcher!
     
+    @IBOutlet weak var loadingImageActivityIndicator: UIActivityIndicatorView!
+    
     // MARK: Methods
 
     @IBOutlet weak var dropZone: UIView! {
@@ -38,10 +40,16 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate
         imageFetcher = ImageFetcher() { (url, image) in
             DispatchQueue.main.async {
                 self.emojiArtView.backgroundImage = image
+                self.loadingImageActivityIndicator.stopAnimating()
             }
         }
         
         session.loadObjects(ofClass: NSURL.self) { nsurls in
+            
+            DispatchQueue.main.async {
+                self.loadingImageActivityIndicator.startAnimating()
+            }
+            
             if let url = nsurls.first as? URL {
                 self.imageFetcher.fetch(url)
             }
