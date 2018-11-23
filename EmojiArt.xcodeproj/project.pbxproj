@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7B2FAD1A21A6F913004FC2F7 /* EmojiArtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2FAD1921A6F913004FC2F7 /* EmojiArtViewController.swift */; };
+		7B2FAD1C21A82BD4004FC2F7 /* EmojiArtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2FAD1B21A82BD4004FC2F7 /* EmojiArtView.swift */; };
 		7B67444121A6F546000EF630 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B67444021A6F546000EF630 /* AppDelegate.swift */; };
 		7B67444621A6F546000EF630 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B67444421A6F546000EF630 /* Main.storyboard */; };
 		7B67444821A6F548000EF630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B67444721A6F548000EF630 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		7B2FAD1921A6F913004FC2F7 /* EmojiArtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArtViewController.swift; sourceTree = "<group>"; };
+		7B2FAD1B21A82BD4004FC2F7 /* EmojiArtView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArtView.swift; sourceTree = "<group>"; };
 		7B67443D21A6F546000EF630 /* EmojiArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmojiArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B67444021A6F546000EF630 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7B67444521A6F546000EF630 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				7B2FAD1921A6F913004FC2F7 /* EmojiArtViewController.swift */,
+				7B2FAD1B21A82BD4004FC2F7 /* EmojiArtView.swift */,
 				7B67444421A6F546000EF630 /* Main.storyboard */,
 				7B2FAD1821A6F8C3004FC2F7 /* Supporting Files */,
 				7B67444C21A6F548000EF630 /* Info.plist */,
@@ -145,6 +148,7 @@
 			files = (
 				7B67444121A6F546000EF630 /* AppDelegate.swift in Sources */,
 				7B2FAD1A21A6F913004FC2F7 /* EmojiArtViewController.swift in Sources */,
+				7B2FAD1C21A82BD4004FC2F7 /* EmojiArtView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
