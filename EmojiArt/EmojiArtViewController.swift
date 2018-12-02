@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScrollViewDelegate
+class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout 
 {
     
     // MARK: Properties
@@ -52,11 +52,17 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
         }
     }
     
-    @IBOutlet weak var scrollViewWidth: NSLayoutConstraint!
+    @IBOutlet weak var emojiCollectionView: UICollectionView! {
+        didSet {
+            emojiCollectionView.dataSource = self
+            emojiCollectionView.delegate = self
+        }
+    }
     
+    @IBOutlet weak var scrollViewWidth: NSLayoutConstraint!
     @IBOutlet weak var scrollViewHeight: NSLayoutConstraint!
     
-    // MARK: Methods
+    // MARK: Scroll View Methods
     
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
         scrollViewWidth.constant = scrollView.contentSize.width
@@ -66,6 +72,18 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return emojiArtView
     }
+    
+    // MARK: Collection View Data Source Methods
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        <#code#>
+    }
+    
+    // MARK: Drag and Drop Methods
     
     func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
         return session.canLoadObjects(ofClass: NSURL.self) && session.canLoadObjects(ofClass: UIImage.self)
