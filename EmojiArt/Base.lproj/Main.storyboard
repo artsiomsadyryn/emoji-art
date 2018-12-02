@@ -65,27 +65,16 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AfE-do-54Q">
                                 <rect key="frame" x="0.0" y="24" width="818.5" height="790"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9qI-6Y-Yom" customClass="EmojiArtView" customModule="EmojiArt" customModuleProvider="target">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="818.5" placeholderIntrinsicHeight="790" translatesAutoresizingMaskIntoConstraints="NO" id="6ww-vu-QaK">
                                         <rect key="frame" x="0.0" y="0.0" width="818.5" height="790"/>
-                                        <subviews>
-                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Rdf-Xk-diO">
-                                                <rect key="frame" x="391" y="376.5" width="37" height="37"/>
-                                                <color key="color" cocoaTouchSystemColor="darkTextColor"/>
-                                            </activityIndicatorView>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="Rdf-Xk-diO" firstAttribute="centerX" secondItem="9qI-6Y-Yom" secondAttribute="centerX" id="wKx-91-cp9"/>
-                                            <constraint firstItem="Rdf-Xk-diO" firstAttribute="centerY" secondItem="9qI-6Y-Yom" secondAttribute="centerY" id="z2Z-rg-ZMx"/>
-                                        </constraints>
-                                    </view>
+                                    </scrollView>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="9qI-6Y-Yom" secondAttribute="trailing" id="7eb-9C-sZO"/>
-                                    <constraint firstItem="9qI-6Y-Yom" firstAttribute="top" secondItem="AfE-do-54Q" secondAttribute="top" id="HrV-6P-11B"/>
-                                    <constraint firstAttribute="bottom" secondItem="9qI-6Y-Yom" secondAttribute="bottom" id="ZqS-Q3-jCW"/>
-                                    <constraint firstItem="9qI-6Y-Yom" firstAttribute="leading" secondItem="AfE-do-54Q" secondAttribute="leading" id="lyQ-sH-LsQ"/>
+                                    <constraint firstItem="6ww-vu-QaK" firstAttribute="top" secondItem="AfE-do-54Q" secondAttribute="top" id="Rih-eF-Tqu"/>
+                                    <constraint firstAttribute="bottom" secondItem="6ww-vu-QaK" secondAttribute="bottom" id="kx9-sv-E6I"/>
+                                    <constraint firstAttribute="trailing" secondItem="6ww-vu-QaK" secondAttribute="trailing" id="qNk-rd-aT9"/>
+                                    <constraint firstItem="6ww-vu-QaK" firstAttribute="leading" secondItem="AfE-do-54Q" secondAttribute="leading" id="yQf-sD-ZIm"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -100,8 +89,7 @@
                     </view>
                     <connections>
                         <outlet property="dropZone" destination="AfE-do-54Q" id="dso-1b-FwN"/>
-                        <outlet property="emojiArtView" destination="9qI-6Y-Yom" id="Pmh-GI-I8W"/>
-                        <outlet property="loadingImageActivityIndicator" destination="Rdf-Xk-diO" id="tzj-H0-bN7"/>
+                        <outlet property="scrollView" destination="6ww-vu-QaK" id="Zmj-1C-l1A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
