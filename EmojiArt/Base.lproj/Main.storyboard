@@ -65,16 +65,22 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AfE-do-54Q">
                                 <rect key="frame" x="0.0" y="24" width="818.5" height="790"/>
                                 <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="818.5" placeholderIntrinsicHeight="790" translatesAutoresizingMaskIntoConstraints="NO" id="6ww-vu-QaK">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6ww-vu-QaK">
                                         <rect key="frame" x="0.0" y="0.0" width="818.5" height="790"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="790" id="0WM-mr-LxP"/>
+                                            <constraint firstAttribute="width" constant="818.5" id="abA-7Y-Vp9"/>
+                                        </constraints>
                                     </scrollView>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="6ww-vu-QaK" firstAttribute="top" secondItem="AfE-do-54Q" secondAttribute="top" id="Rih-eF-Tqu"/>
-                                    <constraint firstAttribute="bottom" secondItem="6ww-vu-QaK" secondAttribute="bottom" id="kx9-sv-E6I"/>
-                                    <constraint firstAttribute="trailing" secondItem="6ww-vu-QaK" secondAttribute="trailing" id="qNk-rd-aT9"/>
-                                    <constraint firstItem="6ww-vu-QaK" firstAttribute="leading" secondItem="AfE-do-54Q" secondAttribute="leading" id="yQf-sD-ZIm"/>
+                                    <constraint firstItem="6ww-vu-QaK" firstAttribute="centerX" secondItem="AfE-do-54Q" secondAttribute="centerX" id="A8V-im-D7D"/>
+                                    <constraint firstItem="6ww-vu-QaK" firstAttribute="top" relation="greaterThanOrEqual" secondItem="AfE-do-54Q" secondAttribute="top" id="Rih-eF-Tqu"/>
+                                    <constraint firstItem="6ww-vu-QaK" firstAttribute="centerY" secondItem="AfE-do-54Q" secondAttribute="centerY" id="iYN-2O-t9P"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="6ww-vu-QaK" secondAttribute="bottom" id="kx9-sv-E6I"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6ww-vu-QaK" secondAttribute="trailing" id="qNk-rd-aT9"/>
+                                    <constraint firstItem="6ww-vu-QaK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AfE-do-54Q" secondAttribute="leading" id="yQf-sD-ZIm"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -90,6 +96,8 @@
                     <connections>
                         <outlet property="dropZone" destination="AfE-do-54Q" id="dso-1b-FwN"/>
                         <outlet property="scrollView" destination="6ww-vu-QaK" id="Zmj-1C-l1A"/>
+                        <outlet property="scrollViewHeight" destination="0WM-mr-LxP" id="xPB-DA-C0H"/>
+                        <outlet property="scrollViewWidth" destination="abA-7Y-Vp9" id="a0g-Ug-G3Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
