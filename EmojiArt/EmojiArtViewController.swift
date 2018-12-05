@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
+class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDragDelegate
 {
     
     // MARK: Properties
@@ -16,8 +16,6 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
     var emojiArtView = EmojiArtView()
     
     var imageFetcher: ImageFetcher!
-    
-    //@IBOutlet weak var loadingImageActivityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var dropZone: UIView! {
         didSet {
@@ -56,6 +54,7 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
         didSet {
             emojiCollectionView.dataSource = self
             emojiCollectionView.delegate = self
+            emojiCollectionView.dragDelegate = self
         }
     }
     
@@ -94,7 +93,7 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
         return cell
     }
     
-    // MARK: Drag and Drop Methods
+    // MARK: Drop Methods
     
     func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
         return session.canLoadObjects(ofClass: NSURL.self) && session.canLoadObjects(ofClass: UIImage.self)
@@ -109,16 +108,10 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
         imageFetcher = ImageFetcher() { (url, image) in
             DispatchQueue.main.async {
                 self.emojiArtBackgroundImage = image
-                //self.loadingImageActivityIndicator.stopAnimating()
             }
         }
         
         session.loadObjects(ofClass: NSURL.self) { nsurls in
-            
-//            DispatchQueue.main.async {
-//                self.loadingImageActivityIndicator.startAnimating()
-//            }
-            
             if let url = nsurls.first as? URL {
                 self.imageFetcher.fetch(url)
             }
@@ -130,6 +123,27 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
             }
         }
 
+    }
+    
+    // MARK: Drag Methods
+    
+    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        return dragItems(at: indexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, itemsForAddingTo session: UIDragSession, at indexPath: IndexPath, point: CGPoint) -> [UIDragItem] {
+        return dragItems(at: indexPath)
+    }
+    
+    private func dragItems(at indexPath: IndexPath) -> [UIDragItem] {
+        if let attributedString = (emojiCollectionView.cellForItem(at: indexPath) as? EmojiCollectionViewCell)?.emojiLabel.attributedText {
+            let dragItem = UIDragItem(itemProvider: NSItemProvider(object: attributedString))
+            dragItem.localObject = attributedString
+            return [dragItem]
+        }
+        else {
+            return []
+        }
     }
     
 }
