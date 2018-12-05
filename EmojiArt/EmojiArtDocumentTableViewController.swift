@@ -11,9 +11,9 @@ import UIKit
 class EmojiArtDocumentTableViewController: UITableViewController
 {
 
+    // MARK: Properties
+    
     var emojiArtDocuments = ["One", "Two", "Three"]
-    
-    
     
     // MARK: - Table view data source
 
