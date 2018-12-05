@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDragDelegate
+class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDragDelegate, UICollectionViewDropDelegate
 {
     
     // MARK: Properties
@@ -55,15 +55,16 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
             emojiCollectionView.dataSource = self
             emojiCollectionView.delegate = self
             emojiCollectionView.dragDelegate = self
+            emojiCollectionView.dropDelegate = self
         }
     }
     
     @IBOutlet weak var scrollViewWidth: NSLayoutConstraint!
     @IBOutlet weak var scrollViewHeight: NSLayoutConstraint!
     
-    var emojis = "😀🎁✈️🌍👍⚽️🎱🍎🐼🐵💼👩💪📌❤️".map { String($0)}
+    var emojis = "😀🎁✈️🌍👍⚽️🐝🎱🍎🐼🐵💼👩💪📌❤️".map { String($0)}
     
-    private var font: UIFont {
+    private var font: UIFont { // font for compatible with Accessibility
         return UIFontMetrics(forTextStyle: .body).scaledFont(for: UIFont.preferredFont(forTextStyle: .body).withSize(64))
     }
     
@@ -93,7 +94,7 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
         return cell
     }
     
-    // MARK: Drop Methods
+    // MARK: Drop Image from Web Methods
     
     func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
         return session.canLoadObjects(ofClass: NSURL.self) && session.canLoadObjects(ofClass: UIImage.self)
@@ -125,9 +126,10 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
 
     }
     
-    // MARK: Drag Methods
+    // MARK: Drag Emojis Methods
     
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        session.localContext = collectionView // in case if we want change the order of emojis
         return dragItems(at: indexPath)
     }
     
@@ -136,13 +138,45 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
     }
     
     private func dragItems(at indexPath: IndexPath) -> [UIDragItem] {
-        if let attributedString = (emojiCollectionView.cellForItem(at: indexPath) as? EmojiCollectionViewCell)?.emojiLabel.attributedText {
+        if let attributedString = (emojiCollectionView.cellForItem(at: indexPath) as? EmojiCollectionViewCell)?.emojiLabel.attributedText { // getting needed to us data with help of indexPath
             let dragItem = UIDragItem(itemProvider: NSItemProvider(object: attributedString))
             dragItem.localObject = attributedString
             return [dragItem]
         }
         else {
             return []
+        }
+    }
+    
+    // MARK: Drop Emojis Methods
+    
+    func collectionView(_ collectionView: UICollectionView, canHandle session: UIDropSession) -> Bool {
+        return session.canLoadObjects(ofClass: NSAttributedString.self)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        dropSessionDidUpdate session: UIDropSession,
+                        withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
+        let isSelf = (session.localDragSession?.localContext as? UICollectionView) == collectionView // with this we undestand if droping emoji perform in the same collection view
+        return UICollectionViewDropProposal(operation: isSelf ? .move : .copy, intent: .insertAtDestinationIndexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        performDropWith coordinator: UICollectionViewDropCoordinator) {
+        let destionationIndexPath = coordinator.destinationIndexPath ?? IndexPath(item: 0, section: 0)
+        
+        for item in coordinator.items {
+            if let sourceIndexPath = item.sourceIndexPath {
+                if let attributedString = item.dragItem.localObject as? NSAttributedString {
+                    collectionView.performBatchUpdates({ // always do multiple changes in collection view with performBatchUpdates
+                        emojis.remove(at: sourceIndexPath.item)
+                        emojis.insert(attributedString.string, at: destionationIndexPath.item)
+                        collectionView.deleteItems(at: [sourceIndexPath])
+                        collectionView.insertItems(at: [destionationIndexPath])
+                    })
+                    coordinator.drop(item.dragItem, toItemAt: destionationIndexPath)
+                }
+            }
         }
     }
     
