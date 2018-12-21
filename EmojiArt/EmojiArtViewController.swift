@@ -123,7 +123,7 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
                 self.imageFetcher.backup = image
             }
         }
-
+        
     }
     
     // MARK: Drag Emojis Methods
@@ -166,7 +166,7 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
         let destionationIndexPath = coordinator.destinationIndexPath ?? IndexPath(item: 0, section: 0)
         
         for item in coordinator.items {
-            if let sourceIndexPath = item.sourceIndexPath {
+            if let sourceIndexPath = item.sourceIndexPath { // drop from the web to imageView
                 if let attributedString = item.dragItem.localObject as? NSAttributedString {
                     collectionView.performBatchUpdates({ // always do multiple changes in collection view with performBatchUpdates
                         emojis.remove(at: sourceIndexPath.item)
@@ -177,7 +177,26 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
                     coordinator.drop(item.dragItem, toItemAt: destionationIndexPath)
                 }
             }
+            else { // drop from the web to collectionView
+                let placeholder = coordinator.drop(
+                    item.dragItem,
+                    to: UICollectionViewDropPlaceholder(insertionIndexPath: destionationIndexPath, reuseIdentifier: "DropPlaceholderCell"))
+                // get data async
+                item.dragItem.itemProvider.loadObject(ofClass: NSAttributedString.self, completionHandler: { (provider, error) in
+                    DispatchQueue.main.async {
+                        if let attributedString = provider as? NSAttributedString {
+                            placeholder.commitInsertion(dataSourceUpdates: { insertionIndexPath in
+                                self.emojis.insert(attributedString.string, at: insertionIndexPath.item)
+                            })
+                        }
+                        else {
+                            placeholder.deletePlaceholder()
+                        }
+                    }
+                })
+            }
+            
         }
+        
     }
-    
 }
