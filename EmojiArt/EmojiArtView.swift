@@ -48,8 +48,8 @@ class EmojiArtView: UIView, UIDropInteractionDelegate
         label.sizeToFit()
         label.center = point
         addEmojiArtGestureRecognizers(to: label)
-        addSubview(label )
-    }
+        addSubview(label)
+    } 
     
     // MARK: Drop from Collection View Methods
     
