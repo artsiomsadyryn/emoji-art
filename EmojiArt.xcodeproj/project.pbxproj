@@ -18,6 +18,7 @@
 		7B67444B21A6F548000EF630 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B67444921A6F548000EF630 /* LaunchScreen.storyboard */; };
 		8E210B8821D255EC00E46C61 /* TextFieldCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E210B8721D255EC00E46C61 /* TextFieldCollectionViewCell.swift */; };
 		8E67B1AF21CD43E400C61DA2 /* EmojiArtView+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E67B1AE21CD43E400C61DA2 /* EmojiArtView+Gestures.swift */; };
+		8EDDB4E421E39DE300FB7674 /* EmojiArt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDDB4E321E39DE300FB7674 /* EmojiArt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		7B67444C21A6F548000EF630 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E210B8721D255EC00E46C61 /* TextFieldCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCollectionViewCell.swift; sourceTree = "<group>"; };
 		8E67B1AE21CD43E400C61DA2 /* EmojiArtView+Gestures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EmojiArtView+Gestures.swift"; sourceTree = "<group>"; };
+		8EDDB4E321E39DE300FB7674 /* EmojiArt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				8E67B1AE21CD43E400C61DA2 /* EmojiArtView+Gestures.swift */,
 				7B2FAD1821A6F8C3004FC2F7 /* Supporting Files */,
 				7B67444C21A6F548000EF630 /* Info.plist */,
+				8EDDB4E321E39DE300FB7674 /* EmojiArt.swift */,
 			);
 			path = EmojiArt;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EDDB4E421E39DE300FB7674 /* EmojiArt.swift in Sources */,
 				7B67444121A6F546000EF630 /* AppDelegate.swift in Sources */,
 				8E67B1AF21CD43E400C61DA2 /* EmojiArtView+Gestures.swift in Sources */,
 				7B1E44DD21B8348400950414 /* EmojiCollectionViewCell.swift in Sources */,
