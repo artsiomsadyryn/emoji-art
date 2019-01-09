@@ -80,6 +80,7 @@
 			children = (
 				7B2FAD1921A6F913004FC2F7 /* EmojiArtViewController.swift */,
 				7B2FAD1B21A82BD4004FC2F7 /* EmojiArtView.swift */,
+				8EDDB4E321E39DE300FB7674 /* EmojiArt.swift */,
 				7B131B1821AD40F6007F9873 /* EmojiArtDocumentTableViewController.swift */,
 				7B1E44DC21B8348400950414 /* EmojiCollectionViewCell.swift */,
 				8E210B8721D255EC00E46C61 /* TextFieldCollectionViewCell.swift */,
@@ -88,7 +89,6 @@
 				8E67B1AE21CD43E400C61DA2 /* EmojiArtView+Gestures.swift */,
 				7B2FAD1821A6F8C3004FC2F7 /* Supporting Files */,
 				7B67444C21A6F548000EF630 /* Info.plist */,
-				8EDDB4E321E39DE300FB7674 /* EmojiArt.swift */,
 			);
 			path = EmojiArt;
 			sourceTree = "<group>";

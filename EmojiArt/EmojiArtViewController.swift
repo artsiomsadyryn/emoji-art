@@ -101,6 +101,27 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
         return UIFontMetrics(forTextStyle: .body).scaledFont(for: UIFont.preferredFont(forTextStyle: .body).withSize(64))
     }
     
+    // MARK: General Methods
+    
+    @IBAction func save(_ sender: UIBarButtonItem) {
+        if let json = emojiArt?.json {
+            if let url = try? FileManager.default.url(
+                for: .documentDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: true).appendingPathComponent("Untitled.jspn") {
+                do {
+                    try json.write(to: url)
+                    print("Saved successfully!")
+                } catch let error {
+                    print("Couldn't save \(error)")
+                }
+            }
+        }
+        
+    }
+    
+    
     // MARK: Scroll View Methods
     
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
