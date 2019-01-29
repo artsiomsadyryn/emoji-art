@@ -45,8 +45,6 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
     
     var emojiArtView = EmojiArtView()
     
-    var imageFetcher: ImageFetcher!
-    
     @IBOutlet weak var dropZone: UIView! {
         didSet {
             dropZone.addInteraction(UIDropInteraction(delegate: self))
@@ -223,12 +221,40 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
     
     // MARK: Drop Image from Web Methods
     
+    var imageFetcher: ImageFetcher!
+    
+    private var supressBadURLWarnings = false
+    
     func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
         return session.canLoadObjects(ofClass: NSURL.self) && session.canLoadObjects(ofClass: UIImage.self)
     }
     
     func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
         return UIDropProposal(operation: .copy)
+    }
+    
+    private func presentBadURLWarning(for url: URL?) {
+        if !supressBadURLWarnings {
+            let alert = UIAlertController(
+                title: "Image Transfer Failed",
+                message: "Couldn't transfer image for its source./nShow this warning in the future?",
+                preferredStyle: .alert
+            )
+            
+            alert.addAction(UIAlertAction(
+                title: "Keep Warning",
+                style: .default
+            ))
+            
+            alert.addAction(UIAlertAction(
+                title: "Stop Warning",
+                style: .destructive,
+                handler: { action in
+                    self.supressBadURLWarnings = true
+            }))
+            
+            present(alert, animated: true)
+        }
     }
     
     func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
@@ -241,7 +267,17 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
         
         session.loadObjects(ofClass: NSURL.self) { nsurls in
             if let url = nsurls.first as? URL {
-                self.imageFetcher.fetch(url)
+                //self.imageFetcher.fetch(url)
+                DispatchQueue.global(qos: .userInitiated).async {
+                    if let imageData = try? Data(contentsOf: url.imageURL), let image = UIImage(data: imageData) {
+                        DispatchQueue.main.async {
+                            self.emojiArtBackgroundImage = (url, image)
+                        }
+                    }
+                    else {
+                        
+                    }
+                }
             }
         }
         
