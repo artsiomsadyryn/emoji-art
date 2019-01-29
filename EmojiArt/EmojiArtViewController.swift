@@ -275,7 +275,7 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
                         }
                     }
                     else {
-                        
+                        self.presentBadURLWarning(for: url)
                     }
                 }
             }
