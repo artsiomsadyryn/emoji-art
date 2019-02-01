@@ -43,7 +43,7 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
     
     // MARK: Properties
     
-    var emojiArtView = EmojiArtView()
+    lazy var emojiArtView = EmojiArtView()
     
     @IBOutlet weak var dropZone: UIView! {
         didSet {
@@ -105,6 +105,8 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
     // MARK: General Methods
     
     private var documentObserver: NSObjectProtocol?
+    private var emojiArtViewObserver: NSObjectProtocol?
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -115,19 +117,27 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
             queue: OperationQueue.main,
             using: { notification in
                 print("documentState changed to \(self.document!.documentState)")
-            }
+        }
         )
         
         document?.open { success in
             if success {
                 self.title = self.document?.localizedName
                 self.emojiArt = self.document?.emojiArt
+                self.emojiArtViewObserver = NotificationCenter.default.addObserver(
+                    forName: .EmojiArtViewDidChange,
+                    object: self.emojiArtView,
+                    queue: OperationQueue.main,
+                    using: { notification in
+                        self.documentChanged()
+                }
+                )
             }
         }
     }
     
     
-    @IBAction func save(_ sender: UIBarButtonItem? = nil) {
+    private func documentChanged() {
         document?.emojiArt = emojiArt
         if document?.emojiArt != nil {
             document?.updateChangeCount(.done)
@@ -136,10 +146,16 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
     }
     
     @IBAction func close(_ sender: UIBarButtonItem) {
-        save()
+        if let observer = emojiArtViewObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
+        
+        documentChanged()
+        
         if document?.emojiArt != nil {
             document?.thumbnail = emojiArtView.snapshot
         }
+        
         dismiss(animated: true) {
             self.document?.close { success in
                 if let observer = self.documentObserver {
