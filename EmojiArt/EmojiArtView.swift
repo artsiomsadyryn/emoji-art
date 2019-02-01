@@ -41,6 +41,8 @@ class EmojiArtView: UIView, UIDropInteractionDelegate
         backgroundImage?.draw(in: bounds)
     }
     
+    private var labelObservations = [UIView:NSKeyValueObservation]()
+    
     func addLabel(with attributedString: NSAttributedString, centeredAt point: CGPoint) {
         let label = UILabel()
         label.backgroundColor = .clear
@@ -49,7 +51,17 @@ class EmojiArtView: UIView, UIDropInteractionDelegate
         label.center = point
         addEmojiArtGestureRecognizers(to: label)
         addSubview(label)
-    } 
+        labelObservations[label] = label.observe(\.center) { (label, change) in
+            NotificationCenter.default.post(name: .EmojiArtViewDidChange, object: self)
+        }
+    }
+    
+    override func willRemoveSubview(_ subview: UIView) {
+        super.willRemoveSubview(subview)
+        if labelObservations[subview] != nil {
+            labelObservations[subview] = nil
+        }
+    }
     
     // MARK: Drop from Collection View Methods
     

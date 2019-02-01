@@ -47,9 +47,6 @@ extension EmojiArtView
             if selectedSubview != nil {
                 recognizer.view?.center = recognizer.view!.center.offset(by: recognizer.translation(in: self))
                 recognizer.setTranslation(CGPoint.zero, in: self)
-                if recognizer.state == .ended {
-                    NotificationCenter.default.post(name: .EmojiArtViewDidChange, object: self)
-                }
             }
         default:
             break
@@ -91,9 +88,6 @@ extension EmojiArtView
                 label.attributedText = label.attributedText?.withFontScaled(by: recognizer.scale)
                 label.stretchToFit()
                 recognizer.scale = 1.0
-                if recognizer.state == .ended {
-                    NotificationCenter.default.post(name: .EmojiArtViewDidChange, object: self)
-                }
             }
         default:
             break
