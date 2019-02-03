@@ -24,8 +24,7 @@ class DocumentInfoViewController: UIViewController
     
     private let shortDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        formatter.timeStyle = .short
+        formatter.dateFormat = "dd.MM.yy HH:mm"
         return formatter
     }()
     
