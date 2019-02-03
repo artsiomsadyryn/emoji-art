@@ -156,7 +156,7 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
             document?.thumbnail = emojiArtView.snapshot
         }
         
-        dismiss(animated: true) {
+        presentingViewController?.dismiss(animated: true) {
             self.document?.close { success in
                 if let observer = self.documentObserver {
                     NotificationCenter.default.removeObserver(observer)
@@ -398,6 +398,18 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
         }
         
     }
+    
+    // MARK: Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Show Document Info" {
+            if let destination = segue.destination.contents as? DocumentInfoViewController {
+                document?.thumbnail = emojiArtView.snapshot
+                destination.document = document
+            }
+        }
+    }
+    
 }
 
 // MARK: Extension
