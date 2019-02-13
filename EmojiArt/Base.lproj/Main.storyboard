@@ -267,7 +267,8 @@
                     <connections>
                         <outlet property="createdLabel" destination="Yxd-tU-HEv" id="qUM-7K-rFC"/>
                         <outlet property="sizeLabel" destination="FRs-DS-mGT" id="JgF-8h-f2y"/>
-                        <outlet property="thunmnailImageView" destination="cdQ-KH-5BD" id="EhD-kv-ZzR"/>
+                        <outlet property="thumbnailAspectRatio" destination="qmb-jA-bP3" id="ceW-cS-PeL"/>
+                        <outlet property="thumbnailImageView" destination="cdQ-KH-5BD" id="dkH-Wu-Ckc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bci-gO-Z6Y" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -10,12 +10,21 @@ import UIKit
 
 class DocumentInfoViewController: UIViewController
 {
+    
+    // MARK: Properties
 
     var document: EmojiArtDocument? {
         didSet {
             updateUI()
         }
     }
+    
+    
+    @IBOutlet weak var thumbnailAspectRatio: NSLayoutConstraint!
+    @IBOutlet weak var thumbnailImageView: UIImageView!
+    
+    @IBOutlet weak var sizeLabel: UILabel!
+    @IBOutlet weak var createdLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,14 +43,22 @@ class DocumentInfoViewController: UIViewController
             createdLabel.text = shortDateFormatter.string(from: created)
         }
         
-        if thunmnailImageView != nil, let thumnnail = document?.thumbnail {
-            thunmnailImageView.image = thumnnail
+        if thumbnailImageView != nil, thumbnailAspectRatio != nil, let thumbnnail = document?.thumbnail {
+            thumbnailImageView.image = thumbnnail
+            thumbnailImageView.removeConstraint(thumbnailAspectRatio)
+            thumbnailAspectRatio = NSLayoutConstraint.init(
+                item: thumbnailImageView,
+                attribute: .width,
+                relatedBy: .equal,
+                toItem: thumbnailImageView,
+                attribute: .height,
+                multiplier: thumbnnail.size.width / thumbnnail.size.height,
+                constant: 0
+            )
+            thumbnailImageView.addConstraint(thumbnailAspectRatio)
+            
         }
     }
-    
-    @IBOutlet weak var thunmnailImageView: UIImageView!
-    @IBOutlet weak var sizeLabel: UILabel!
-    @IBOutlet weak var createdLabel: UILabel!
     
     @IBAction func done(_ sender: UIButton) {
         presentingViewController?.dismiss(animated: true)
