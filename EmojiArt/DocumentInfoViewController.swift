@@ -60,6 +60,11 @@ class DocumentInfoViewController: UIViewController
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+    }
+    
     @IBAction func done(_ sender: UIButton) {
         presentingViewController?.dismiss(animated: true)
     }

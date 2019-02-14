@@ -172,11 +172,20 @@
                                 <action selector="close:" destination="IZC-ov-Yg4" id="vha-jZ-YfV"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Inspect" id="sgC-0e-qVs">
-                            <connections>
-                                <segue destination="1ov-OL-X7f" kind="presentation" identifier="Show Document Info" id="c7n-MA-nb0"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Pop" id="1hf-T5-aAU">
+                                <connections>
+                                    <segue destination="1ov-OL-X7f" kind="popoverPresentation" identifier="Show Document Info" popoverAnchorBarButtonItem="1hf-T5-aAU" id="JZL-ux-6lc">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Inspect" id="sgC-0e-qVs">
+                                <connections>
+                                    <segue destination="1ov-OL-X7f" kind="presentation" identifier="Show Document Info" modalPresentationStyle="formSheet" id="c7n-MA-nb0"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="dropZone" destination="k8y-SJ-bCf" id="pCW-sZ-Eoq"/>
@@ -195,11 +204,11 @@
             <objects>
                 <viewController id="1ov-OL-X7f" customClass="DocumentInfoViewController" customModule="EmojiArt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WLL-di-aFW">
-                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
+                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="fTz-26-aR4">
-                                <rect key="frame" x="492.5" y="311" width="209" height="212"/>
+                                <rect key="frame" x="165.5" y="204" width="209" height="212"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cdQ-KH-5BD">
                                         <rect key="frame" x="0.0" y="0.0" width="209" height="117"/>
@@ -294,4 +303,7 @@
             <point key="canvasLocation" x="712" y="654"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="c7n-MA-nb0"/>
+    </inferredMetricsTieBreakers>
 </document>
