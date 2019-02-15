@@ -25,6 +25,7 @@ class DocumentInfoViewController: UIViewController
     @IBOutlet weak var topLevelView: UIStackView!
     @IBOutlet weak var sizeLabel: UILabel!
     @IBOutlet weak var createdLabel: UILabel!
+    @IBOutlet weak var returnToDocumentButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +57,12 @@ class DocumentInfoViewController: UIViewController
                 constant: 0
             )
             thumbnailImageView.addConstraint(thumbnailAspectRatio)
+            
+        }
+        if presentationController is UIPopoverPresentationController {
+            thumbnailImageView?.isHidden = true
+            returnToDocumentButton?.isHidden = true
+            view.backgroundColor = .clear
             
         }
     }

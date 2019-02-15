@@ -275,6 +275,7 @@
                     </view>
                     <connections>
                         <outlet property="createdLabel" destination="Yxd-tU-HEv" id="qUM-7K-rFC"/>
+                        <outlet property="returnToDocumentButton" destination="xKd-4d-baD" id="kMU-tQ-c2D"/>
                         <outlet property="sizeLabel" destination="FRs-DS-mGT" id="JgF-8h-f2y"/>
                         <outlet property="thumbnailAspectRatio" destination="qmb-jA-bP3" id="ceW-cS-PeL"/>
                         <outlet property="thumbnailImageView" destination="cdQ-KH-5BD" id="dkH-Wu-Ckc"/>
