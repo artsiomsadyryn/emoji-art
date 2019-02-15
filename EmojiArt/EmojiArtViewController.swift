@@ -136,6 +136,7 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
         }
     }
     
+    // MARK: Document Handling
     
     private func documentChanged() {
         document?.emojiArt = emojiArt
@@ -145,7 +146,7 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
         }
     }
     
-    @IBAction func close(_ sender: UIBarButtonItem) {
+    @IBAction func close(_ sender: UIBarButtonItem? = nil) {
         if let observer = emojiArtViewObserver {
             NotificationCenter.default.removeObserver(observer)
         }
@@ -415,6 +416,10 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
     
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return .none
+    }
+    
+    @IBAction func close(bySegue: UIStoryboardSegue) {
+        close()
     }
     
 }
