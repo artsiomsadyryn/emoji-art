@@ -93,6 +93,10 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
     
     @IBOutlet weak var scrollViewWidth: NSLayoutConstraint!
     @IBOutlet weak var scrollViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var embeddedDocInfoHeight: NSLayoutConstraint!
+    @IBOutlet weak var embeddedDocInfoWidth: NSLayoutConstraint!
+    
+    
     
     var emojis = "😀🎁✈️🌍👍⚽️🐝🎱🍎🐼🐵💼👩💪📌❤️".map { String($0)}
     
@@ -101,12 +105,12 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
     }
     
     var document: EmojiArtDocument?
-    
-    // MARK: General Methods
+    private var embeddedDocInfo: DocumentInfoViewController?
     
     private var documentObserver: NSObjectProtocol?
     private var emojiArtViewObserver: NSObjectProtocol?
     
+    // MARK: General Methods
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -117,6 +121,11 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
             queue: OperationQueue.main,
             using: { notification in
                 print("documentState changed to \(self.document!.documentState)")
+                if self.document!.documentState == .normal, let docInfoVC = self.embeddedDocInfo {
+                    docInfoVC.document = self.document
+                    self.embeddedDocInfoWidth.constant = docInfoVC.preferredContentSize.width
+                    self.embeddedDocInfoHeight.constant = docInfoVC.preferredContentSize.height
+                }
         }
         )
         
@@ -411,8 +420,12 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
                     ppc.delegate = self
                 }
             }
+        } else if segue.identifier == "Embed Document Info", let destination = segue.destination.contents as? DocumentInfoViewController {
+            embeddedDocInfo = destination
         }
     }
+    
+    
     
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return .none
